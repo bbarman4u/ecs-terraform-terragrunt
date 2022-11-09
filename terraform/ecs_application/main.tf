@@ -92,6 +92,26 @@ resource "aws_security_group" "ingress_api" {
   }
 }
 
+resource "aws_secretsmanager_secret" "ecs_secrets" {
+  name = "kv/common/spec"
+}
+
+# The map here can come from other supported configurations
+# like locals, resource attribute, map() built-in, etc.
+variable "example_secrets" {
+  default = {
+    key1 = "value1"
+    key2 = "value2"
+  }
+
+  type = map(string)
+}
+
+resource "aws_secretsmanager_secret_version" "ecs_secrets" {
+  secret_id     = aws_secretsmanager_secret.ecs_secrets.id
+  secret_string = jsonencode(var.example_secrets)
+}
+
 ## --------------------------------------------------------------------------- ##
 
 module "ecs_autoscale_role" {
