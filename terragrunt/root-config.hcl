@@ -1,9 +1,10 @@
 locals {
-  region = "eu-central-1"
+  #region = "eu-central-1"
+  region = "us-west-2"
 
-  version_terraform    = "=1.2.1"
-  version_terragrunt   = "=0.37.1"
-  version_provider_aws = "=4.15.1"
+  version_terraform    = ">= 1.2.1"
+  version_terragrunt   = ">= 0.37.1"
+  version_provider_aws = ">= 4.15.1"
 
   root_tags = {
     project = "ecs-terraform-terragrunt"
@@ -34,7 +35,7 @@ EOF
 remote_state {
   backend = "s3"
   config = {
-    bucket         = "ecs-terraform-terragrunt-state-bucket"
+    bucket         = "ecs-terraform-terragrunt-state-bucket-11112022"
     key            = "${path_relative_to_include()}/terraform.tfstate"
     encrypt        = true
     region         = local.region

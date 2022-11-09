@@ -39,7 +39,8 @@ dependency "aws_alb" {
   config_path                             = "${get_parent_terragrunt_dir("root")}/base-infrastructure/${include.stage.locals.stage}/aws_alb"
   mock_outputs_allowed_terraform_commands = ["init", "validate", "plan"]
   mock_outputs = {
-    aws_alb_arn          = "arn:aws:elasticloadbalancing:eu-central-1:643202173500:loadbalancer/app/ghost-alb/9XXX000XXX000XXX"
+    #aws_alb_arn          = "arn:aws:elasticloadbalancing:eu-central-1:643202173500:loadbalancer/app/ghost-alb/9XXX000XXX000XXX"
+    aws_alb_arn          = "arn:aws:elasticloadbalancing:us-west-2:643202173500:loadbalancer/app/ghost-alb/9XXX000XXX000XXX"
     aws_sg_egress_all_id = "some-id"
   }
 }
